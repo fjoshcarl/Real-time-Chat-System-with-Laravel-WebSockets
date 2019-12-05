@@ -10,8 +10,12 @@ use App\Events\WebsocketDemoEvent;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     broadcast(new WebsocketDemoEvent('some data'));
     return view('welcome');
 });
+Route::get('/chats', 'ChatsController@index');
+Route::get('/messages', 'ChatsController@fetchMessages');
+Route::post('/messages', 'ChatsController@sendMessage');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
